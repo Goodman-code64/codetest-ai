@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import Login from "./Login.jsx";
-import Dashboard from "./Dashboard.jsx";
+import Login from "./login.jsx";
+import Dashboard from "./dashboard.jsx";
 
 import './App.css';
 
