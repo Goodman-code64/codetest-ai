@@ -1,22 +1,20 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import './dashboard.css';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 export default function Dashboard({ user, onLogout }) {
-  const [topic, setTopic] = useState('factorial');
-  const [difficulty, setDifficulty] = useState('easy');
-  const [tests, setTests] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  // ... state
 
   const handleGenerateTests = async () => {
     setLoading(true);
     setError('');
-    
+
     try {
       const token = localStorage.getItem('token');
       const response = await axios.post(
-        'http://localhost:5000/api/tests/generate',
+        `${API_URL}/api/tests/generate`,
         { topic, difficulty, language: 'javascript' },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -27,6 +25,10 @@ export default function Dashboard({ user, onLogout }) {
       setLoading(false);
     }
   };
+
+  // ... rest of component
+
+
 
   return (
     <div className="dashboard-container">
@@ -95,5 +97,7 @@ export default function Dashboard({ user, onLogout }) {
     </div>
   );
 }
+
+
 
 

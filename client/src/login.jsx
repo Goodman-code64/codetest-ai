@@ -2,6 +2,9 @@ import { useState } from 'react';
 import axios from 'axios';
 import './login.css';
 
+// Get API URL from environment variable
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 export default function Login({ onLoginSuccess }) {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
@@ -17,8 +20,8 @@ export default function Login({ onLoginSuccess }) {
 
     try {
       const url = isLogin 
-        ? 'http://localhost:5000/api/auth/login'
-        : 'http://localhost:5000/api/auth/register';
+        ? `${API_URL}/api/auth/login`
+        : `${API_URL}/api/auth/register`;
 
       const data = isLogin 
         ? { email, password }
@@ -91,4 +94,5 @@ export default function Login({ onLoginSuccess }) {
     </div>
   );
 }
+
 
