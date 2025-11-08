@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import './Dashboard.css';
+import './dashboard.css';
 
 export default function Dashboard({ user, onLogout }) {
   const [topic, setTopic] = useState('factorial');
