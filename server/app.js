@@ -4,22 +4,18 @@ require('dotenv').config();
 
 const app = express();
 
-// List all allowed origins
 const allowedOrigins = [
-  
   'http://localhost:5173',
-  'https://codetest-7l59yzm3z-jeenesh-rajputs-projects.vercel.app'
-];
-
   
-
+  'https://codetest-ai-f1.onrender.com'
+];
 
 // Dynamic CORS origin check
 app.use(cors({
   origin: function (origin, callback) {
-    // Allow requests with no origin like mobile apps or curl
+    // Allow requests with no origin (e.g. mobile apps, Postman, curl)
     if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) !== -1) {
+    if (allowedOrigins.includes(origin)) {
       return callback(null, true);
     } else {
       return callback(new Error('Not allowed by CORS'));
@@ -46,6 +42,7 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`✅ Server running on port ${PORT}`);
 });
+
 
 
 
